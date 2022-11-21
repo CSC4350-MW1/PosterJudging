@@ -3,3 +3,5 @@ Code/key.json
 Code/venv
 Code/__pycache__
 Code/.vscode
+Code/sendgrid.env
+result.csv

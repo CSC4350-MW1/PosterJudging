@@ -96,16 +96,23 @@ class Grader:
 
 
 def score_all_projects(scores, project_dict):
+    comment_dict = dict()
     project_scores = dict()
     for score in scores:
         if score.project_id in project_scores:
             project_scores[score.project_id].append(score.score)
         else:
             project_scores[score.project_id] = [score.score]
+        
+        if score.project_id in comment_dict:
+            comment_dict[score.project_id].append((score.grader_id,score.comments))
+        else:
+            comment_dict[score.project_id] = [(score.grader_id,score.comments)]
     
     key_intersection = set(project_dict.keys()).intersection(set(project_scores.keys()))
     for project_id in key_intersection:
         project_dict[project_id].add_scores(project_scores[project_id])
+    return comment_dict
 
 def clear_grading_assignments(db):
     graders_db = db.collection(u'Graders')
@@ -113,3 +120,36 @@ def clear_grading_assignments(db):
     for data in graders_data:
         grader = Grader(**json.loads(json.dumps(data.to_dict())))
         grader.clear_grading(db)
+
+def get_graders(db):
+    # Grading
+    graders_db = db.collection(u'Graders')
+    grader_data = graders_db.get()
+
+    graders = dict()
+    for grader in grader_data:
+        g = Grader(**json.loads(json.dumps(grader.to_dict())))
+        graders[g.grader_id] = g
+    return graders
+
+def get_projects(db):
+    # Get projects
+    projects_db = db.collection(u'Projects')
+    projects_data = projects_db.get()
+
+    projects = dict()
+    for project in projects_data:
+        p = Project(**json.loads(json.dumps(project.to_dict())))
+        projects[p.project_id] = p
+    return projects
+
+def get_scores(db):
+    # Get scores
+    scores_db = db.collection(u'Scores')
+    scores_data = scores_db.get()
+
+    scores = list()
+    for score in scores_data:
+        s = Score(**json.loads(json.dumps(score.to_dict())))
+        scores.append(s)
+    return scores

@@ -3,10 +3,11 @@ from firebase_admin import credentials
 from firebase_admin import firestore
 import json
 from judging import *
-import pandas as pd
 import random
 
 # Use a service account.
+# Use following in cloud:
+#cred = credentials.Certificate('key.json')
 cred = credentials.Certificate('Code/key.json')
 app = firebase_admin.initialize_app(cred)
 
@@ -16,22 +17,10 @@ db = firestore.client()
 clear_grading_assignments(db)
 
 # Grading
-graders_db = db.collection(u'Graders')
-grader_data = graders_db.get()
-
-graders = dict()
-for grader in grader_data:
-    g = Grader(**json.loads(json.dumps(grader.to_dict())))
-    graders[g.grader_id] = g
+graders = get_graders(db)
 
 # Projects
-projects_db = db.collection(u'Projects')
-projects_data = projects_db.get()
-
-projects = dict()
-for data in projects_data:
-    p = Project(**json.loads(json.dumps(data.to_dict())))
-    projects[p.project_id] = p
+projects = get_projects(db)
 
 
 grading_queue =list(graders.keys())
