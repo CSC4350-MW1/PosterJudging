@@ -7,7 +7,7 @@ from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 from sendgrid.helpers.mail import Attachment, FileContent, FileName, FileType, Disposition
 import base64
-
+import io
 
 
 def comment_to_string(comments):
@@ -21,7 +21,7 @@ def comment_to_string(comments):
         return comments[0][0] + ': ' + comments[0][1]
 
 
-def addScores(request):
+def hello_world(request):
     # Use a service account.
     # cred = credentials.Certificate('key.json')
     cred = credentials.Certificate('Code/key.json')
@@ -40,7 +40,8 @@ def addScores(request):
         df_dict[project] = [projects[project].score, comment_to_string(comments[project])]
     results = pd.DataFrame.from_dict(df_dict, orient='index', columns=['Score', 'Comments'])
     results.sort_values(by=['Score'], inplace=True, ascending=False)
-    results.to_csv('results.csv')
+    
+    
 
     print(results)
 
@@ -49,10 +50,10 @@ def addScores(request):
 
     # Send email
 
-    with open('results.csv', 'rb') as f:
-        data = f.read()
-        f.close()
-    encoded_file = base64.b64encode(data).decode()
+    s = io.StringIO()
+    results.to_csv(s, sep=',', encoding='utf-8')
+    encoded_file = base64.b64encode(s.getvalue().encode()).decode()
+
     attachedFile = Attachment(
         FileContent(encoded_file),
         FileName('results.csv'),
@@ -68,9 +69,7 @@ def addScores(request):
     try:
         sg = SendGridAPIClient('')
         response = sg.send(message)
-        print(response.status_code)
-        print(response.body)
-        print(response.headers)
     except Exception as e:
-        print(e.message)
-addScores(None)
+        pass
+
+    return 'Hello World!'
