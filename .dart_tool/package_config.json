@@ -74,6 +74,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "material",
+      "rootUri": "file:///Users/loladekasumu/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/material-1.0.0+2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "material_color_utilities",
       "rootUri": "file:///Users/loladekasumu/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/material_color_utilities-0.1.5",
       "packageUri": "lib/",
@@ -146,7 +152,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2022-11-27T15:36:17.811529Z",
+  "generated": "2022-11-27T23:26:20.753259Z",
   "generator": "pub",
   "generatorVersion": "2.18.4"
 }
