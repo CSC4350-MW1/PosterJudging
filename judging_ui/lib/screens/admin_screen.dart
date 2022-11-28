@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors, camel_case_types
 
 import 'package:flutter/material.dart';
+import 'package:judging_ui/screens/timer_screen2.dart';
 import 'login_screen.dart';
 import 'rubric_screen.dart';
 import 'rubric_screen2.dart';
 import 'timer_screen.dart';
 import 'package:http/http.dart' as http;
+
 
 class adminScreen extends StatefulWidget {
   const adminScreen({super.key});
@@ -63,7 +65,7 @@ class _adminScreenState extends State<adminScreen> {
                     var response = await http.get(Uri.parse(url));
                     print('Response ' + response.toString());
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const timerScreen()));
+                        builder: (context) => const timerScreen2()));
                   },
                   child: Text('Stop'),
                   style: ElevatedButton.styleFrom(
