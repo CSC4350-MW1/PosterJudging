@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:judging_ui/screens/home_screen.dart';
 import 'login_screen.dart';
 import 'rubric_screen.dart';
 
@@ -42,12 +43,12 @@ class _FinalScreenState extends State<FinalScreen> {
                 //take name from database once connected so it display "hello user "
 
                 ActionChip(
-                    label: Text("Logout"),
+                    label: Text("Home"),
                     onPressed: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => LoginScreen()));
+                              builder: (context) => HomeScreen()));
                     }),
               ],
             ),
