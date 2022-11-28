@@ -13,7 +13,6 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formKey = GlobalKey<FormState>();
   final TextEditingController usernameController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final usernameField = TextFormField(
@@ -67,7 +66,7 @@ class _LoginScreenState extends State<LoginScreen> {
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
 
-            if (usernameField == "admin" && passwordField == "admin") {
+            if (usernameController.text == "admin" && passwordController.text == "admin") {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => adminScreen()),
