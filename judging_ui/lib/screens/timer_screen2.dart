@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class timerScreen extends StatefulWidget {
-  const timerScreen({super.key});
+class timerScreen2 extends StatefulWidget {
+  const timerScreen2({super.key});
 
   @override
-  State<timerScreen> createState() => _timerScreenState();
+  State<timerScreen2> createState() => _timerScreen2State();
 }
 
-class _timerScreenState extends State<timerScreen> {
+class _timerScreen2State extends State<timerScreen2> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,7 +30,7 @@ class _timerScreenState extends State<timerScreen> {
                       Image.asset("assets/images/gsu.jpg", fit: BoxFit.contain),
                 ),
                 Text(
-                  "The timer has started ",
+                  "The timer has stopped ",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
