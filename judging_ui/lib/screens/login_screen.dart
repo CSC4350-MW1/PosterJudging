@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
+import 'admin_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -65,8 +66,17 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
           minWidth: MediaQuery.of(context).size.width,
           onPressed: () {
-            Navigator.pushReplacement(
+
+            if (usernameField == "admin" && passwordField == "admin") {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => adminScreen()),
+              );
+            } else {
+              Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => HomeScreen()));
+            }
+            
           },
           child: Text(
             "Login",
