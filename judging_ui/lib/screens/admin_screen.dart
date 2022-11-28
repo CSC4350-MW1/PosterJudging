@@ -1,8 +1,11 @@
+// ignore_for_file: prefer_const_constructors, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'rubric_screen.dart';
 import 'rubric_screen2.dart';
 import 'timer_screen.dart';
+import 'package:http/http.dart' as http;
 
 class adminScreen extends StatefulWidget {
   const adminScreen({super.key});
@@ -26,7 +29,7 @@ class _adminScreenState extends State<adminScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Text(
+                const Text(
                   "Welcome Admin, ",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
@@ -36,21 +39,37 @@ class _adminScreenState extends State<adminScreen> {
                 SizedBox(
                   height: 15,
                 ),
-                ElevatedButton(onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const timerScreen())), 
-            child: Text('Start'), style: ElevatedButton.styleFrom(primary:Colors.blue ,),), 
-                
-                // ActionChip(label: Text("Poster Day Form "), onPressed: () {
-                //    Navigator.pushReplacement(
-                // context, MaterialPageRoute(builder: (context) => rubricScreen()));
-                // }),
+                ElevatedButton(
+                  onPressed: () async {
+                    var url =
+                        "https://us-east1-demodayscorer.cloudfunctions.net/generate_grading_assignment";
+                    var response = await http.get(Uri.parse(url));
+                    print('Response ' + response.toString());
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const timerScreen()));
+                  },
+                  child: Text('Start'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                  ),
+                ),
                 SizedBox(
                   height: 15,
                 ),
-                 ElevatedButton(onPressed: () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const timerScreen())), 
-            child: Text('Stop'), style: ElevatedButton.styleFrom(primary:Colors.blue ,),)
-               
+                ElevatedButton(
+                  onPressed: () async {
+                    var url =
+                        "https://us-central1-demodayscorer.cloudfunctions.net/send";
+                    var response = await http.get(Uri.parse(url));
+                    print('Response ' + response.toString());
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const timerScreen()));
+                  },
+                  child: Text('Stop'),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.blue,
+                  ),
+                )
               ],
             ),
           ),
