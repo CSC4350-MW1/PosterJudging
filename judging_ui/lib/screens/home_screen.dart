@@ -37,13 +37,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 10,
                 ),
                 //take name from database once connected so it display "hello user "
-                Text("Name",
-                    style: TextStyle(
-                        color: Colors.black, fontWeight: FontWeight.w500)),
+                // Text("Name",
+                //     style: TextStyle(
+                //         color: Colors.black, fontWeight: FontWeight.w500)),
                 SizedBox(
                   height: 15,
                 ),
-                ActionChip(label: Text("Poster Day Form "), onPressed: () {
+                ActionChip(label: Text("Poster Day Form 1 "), onPressed: () {
+                   Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => rubricScreen()));
+                }),
+                 SizedBox(
+                  height: 10,
+                ),
+                 ActionChip(label: Text("Poster Day Form 2 "), onPressed: () {
+                   Navigator.pushReplacement(
+                context, MaterialPageRoute(builder: (context) => rubricScreen()));
+                }),
+                 SizedBox(
+                  height: 10,
+                ),
+                 ActionChip(label: Text("Poster Day Form 3 "), onPressed: () {
                    Navigator.pushReplacement(
                 context, MaterialPageRoute(builder: (context) => rubricScreen()));
                 }),

@@ -30,7 +30,7 @@ class _timerScreenState extends State<timerScreen> {
                       Image.asset("assets/images/gsu.jpg", fit: BoxFit.contain),
                 ),
                 Text(
-                  "The timer has started ",
+                  "\nThe voting period has started ",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 SizedBox(
